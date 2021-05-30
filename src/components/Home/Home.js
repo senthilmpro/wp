@@ -5,6 +5,7 @@ import './Home.css';
 const Home = () => {
     const [data, setData] = useState([]);
     const [pageIndex, setPageIndex] = useState(1);
+    const siteTitle = "Archive WP";
 
     const setLinks = async (pageIndex) => {
         const linksArray = await parser.parseContent(pageIndex);
@@ -28,12 +29,15 @@ const Home = () => {
 
     return (
         <div className="container Home">
+            <div>
+                <h2>{siteTitle} - page {pageIndex}</h2>
+            </div>
             <div className="LinkItemsContainer">
                 {
                     data.map(val => {
                         return (
                             <div className="LinkItem">
-                                <span class="dot"></span> <a href={val.url}> {val.title}</a>
+                                <span class="dot"></span> <a href={val.url} target="_blank"> {val.title}</a>
                             </div>
                         )
                     })

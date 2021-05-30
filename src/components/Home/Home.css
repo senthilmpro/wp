@@ -1,5 +1,9 @@
 
 
+.LinkItemsContainer {
+    padding: 10px;
+}
+
 .LinkItem {
     height: 50px;
     text-align:left;
