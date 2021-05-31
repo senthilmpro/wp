@@ -18,23 +18,25 @@ const Home = () => {
     }
 
     const fetchArchiveUrl = async (url) => {
-        if(url == currentUrl)
+        if (url == currentUrl) {
             setCurrentUrl(null);
-        else
+        } else {
             setCurrentUrl(url);
-        let reqUrl = url.replace('/details/','/metadata/');
-        const data = await utils.fetchArchiveItem(reqUrl);
-        const linksArr = MetadataUtil.fileLinks(data);
-        setLinks(linksArr);
+            let reqUrl = url.replace('/details/', '/metadata/');
+            reqUrl = reqUrl.replace('http://', 'https://');
+            const data = await utils.fetchArchiveItem(reqUrl);
+            const linksArr = MetadataUtil.fileLinks(data);
+            setLinks(linksArr);
+        }
     }
 
     const nextItems = () => {
-        setPageIndex(c => c+1);
+        setPageIndex(c => c + 1);
     }
 
     const prevItems = () => {
-        if(pageIndex > 1){
-            setPageIndex(c => c-1);
+        if (pageIndex > 1) {
+            setPageIndex(c => c - 1);
         }
     }
 
@@ -57,14 +59,14 @@ const Home = () => {
                                     <button className="btn btn-primary btn-sm links-btn" onClick={() => fetchArchiveUrl(val.url)} >Links</button>
                                 </div>
                                 {
-                                    val.url == currentUrl && 
+                                    val.url == currentUrl &&
                                     <div className="fileLinks">
-                                    <ul>
-                                        {links && links.map(x => <li><a href={x}>{x}</a></li>)}
-                                    </ul>
-                                </div>
+                                        <ul>
+                                            {links && links.map(x => <li><a href={x}>{x}</a></li>)}
+                                        </ul>
+                                    </div>
                                 }
-                                
+
                             </div>
                         )
                     })
