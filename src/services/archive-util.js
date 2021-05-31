@@ -1,12 +1,7 @@
 
+import axios from 'axios';
 
 const utils = {
-    fetchPostsUrl: (site, page, number) => {
-        return `https://public-api.wordpress.com/rest/v1.1/sites/${site}/posts?number=${number}&page=${page}&fields=title,content`;
-    },
-    fetchPosts: (site, page, number) => {
-
-    },
     parseContent: (content) => {
         const parser = new DOMParser();
         const htmlObj = parser.parseFromString(content, 'text/html');
@@ -25,6 +20,11 @@ const utils = {
         if(str && typeof str == "string"){
             return JSON.parse(str);
         }
+    },
+    fetchArchiveItem: async(url) => {
+        const data = await axios.get(url).then(res => res.data);
+        console.log(data);
+        return data;
     }
 }
 

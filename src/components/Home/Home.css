@@ -23,3 +23,13 @@
     display: flex;
     justify-content: space-evenly;
   }
+
+  .links-btn{
+      height: 40px;
+      margin-left: 10px;
+  }
+
+  .fileLinks{
+        margin-top: 10px;
+        text-align: left;
+  }
