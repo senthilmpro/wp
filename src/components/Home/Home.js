@@ -56,7 +56,10 @@ const Home = () => {
                         return (
                             <>
                                 <div className="LinkItem">
+                                    <div>
                                     <span class="dot"></span> <a href={val.url} target="_blank"> {val.title}</a>
+                                    </div>
+                                    
                                     <button className="btn btn-default btn-sm links-btn" onClick={() => fetchArchiveUrl(val.url)} >Links</button>
                                 </div>
                                 {
