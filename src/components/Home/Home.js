@@ -21,6 +21,7 @@ const Home = () => {
         if (url == currentUrl) {
             setCurrentUrl(null);
         } else {
+            setLinks(null);
             setCurrentUrl(url);
             let reqUrl = url.replace('/details/', '/metadata/');
             reqUrl = reqUrl.replace('http://', 'https://');
