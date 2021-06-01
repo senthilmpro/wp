@@ -53,28 +53,28 @@ const Home = () => {
                 {
                     data.map(val => {
                         return (
-                            <div>
+                            <>
                                 <div className="LinkItem">
                                     <span class="dot"></span> <a href={val.url} target="_blank"> {val.title}</a>
-                                    <button className="btn btn-primary btn-sm links-btn" onClick={() => fetchArchiveUrl(val.url)} >Links</button>
+                                    <button className="btn btn-default btn-sm links-btn" onClick={() => fetchArchiveUrl(val.url)} >Links</button>
                                 </div>
                                 {
                                     val.url == currentUrl &&
                                     <div className="fileLinks">
                                         <ul>
-                                            {links && links.map(x => <li><a href={x}>{x}</a></li>)}
+                                            {links && links.map(x => <li className="file-link"><a href={x}>{x}</a></li>)}
                                         </ul>
                                     </div>
                                 }
 
-                            </div>
+                            </>
                         )
                     })
                 }
             </div>
             <div className="btn-container">
-                <button className="btn" onClick={() => prevItems()}>Previous</button>
-                <button className="btn" onClick={() => nextItems()}>Next</button>
+                <button className="btn btn-info" onClick={() => prevItems()}>Previous</button>
+                <button className="btn btn-info" onClick={() => nextItems()}>Next</button>
             </div>
         </div>
     )
