@@ -12,17 +12,22 @@ const ignoredFormats = [
 const ignoreExtensions = [
     '.NFO',
     '__ia_thumb.jpg'
-]
+].map(x => x.toLowerCase());
+
+const URL_TYPE = {
+    "ORIGINAL" : "ORIGINAL",
+    "PARSED": "PARSED"
+}
+
+const SELECTED_URL_TYPE = URL_TYPE.ORIGINAL;
 
 const containsIgnoreExtension = (filename) => {
     let isPresent = false;
     ignoreExtensions.forEach(x => {
-        if(filename.indexOf(x) !== -1)
+        if(filename.indexOf(x.toLowerCase()) !== -1)
         {
-            console.log(filename)
             isPresent = true;
         }
-            
     })
     return isPresent;
 }
@@ -31,13 +36,17 @@ const MetadataUtil = {
     fileLinks: (obj) => {
         if(!obj) return [];
         if(obj.dark) return [];
-        const {server, dir, files} = obj;
+        const {server, dir, files, metadata} = obj;
         let newFiles = [];
         if(files && files.length > 0){
-            
             newFiles = files.filter(x => ignoredFormats.indexOf(x.format) == -1).filter(x => !containsIgnoreExtension(x.name)).filter(x => (x.source == "original"));
-            
-            newFiles = newFiles.map(x => `https://${server}${dir}/${x.name}`)
+            if(SELECTED_URL_TYPE == URL_TYPE.ORIGINAL){
+                let identifier = metadata.identifier;
+                let hostname = `archive.org`
+                newFiles = newFiles.map(x => `https://${hostname}/download/${identifier}/${x.name}`)
+            } else {
+                newFiles = newFiles.map(x => `https://${server}${dir}/${x.name}`)
+            }
         }
         console.log("FILES: ", newFiles);
         return newFiles;
