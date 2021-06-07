@@ -4,6 +4,26 @@
     padding: 10px;
 }
 
+.LinkItem {
+    min-height: 50px;
+    text-align:left;
+
+    
+}
+
+.TitleItem {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dot {
+    margin-right: 10px;
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+  }
 
   .btn-container {
     display: flex;

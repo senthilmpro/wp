@@ -1,34 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import utils from '../../services/archive-util';
-import MetadataUtil from '../../services/metadata-util';
 import parser from '../../services/parser-util';
 import './Home.css';
+import ArchiveItem from '../ArchiveItem/ArchiveItem';
 
 const Home = () => {
     const [data, setData] = useState([]);
     const [pageIndex, setPageIndex] = useState(1);
-    const [links, setLinks] = useState(null);
-    const [currentUrl, setCurrentUrl] = useState(null);
     const siteTitle = "Archive WP";
 
     const setArchiveLinks = async (pageIndex) => {
         const linksArray = await parser.fetchDataAndTransform(pageIndex);
-        console.log("LINKS ARRAY: ", linksArray)
         setData(linksArray);
-    }
-
-    const fetchArchiveUrl = async (url) => {
-        if (url == currentUrl) {
-            setCurrentUrl(null);
-        } else {
-            setLinks(null);
-            setCurrentUrl(url);
-            let reqUrl = url.replace('/details/', '/metadata/');
-            reqUrl = reqUrl.replace('http://', 'https://');
-            const data = await utils.fetchArchiveItem(reqUrl);
-            const linksArr = MetadataUtil.fileLinks(data);
-            setLinks(linksArr);
-        }
     }
 
     const nextItems = () => {
@@ -48,32 +30,11 @@ const Home = () => {
     return (
         <div className="container Home">
             <div>
-                <h2>{siteTitle} - page {pageIndex}</h2>
+                <h2>{siteTitle} - Page {pageIndex}</h2>
             </div>
             <div className="LinkItemsContainer">
-                {
-                    data.map(val => {
-                        return (
-                            <>
-                                <div className="LinkItem">
-                                    <div>
-                                    <span class="dot"></span> <a href={val.url} target="_blank"> {val.title}</a>
-                                    </div>
-                                    
-                                    <button className="btn btn-default btn-sm links-btn" onClick={() => fetchArchiveUrl(val.url)} >Links</button>
-                                </div>
-                                {
-                                    val.url == currentUrl &&
-                                    <div className="fileLinks">
-                                        <ul>
-                                            {links && links.map(x => <li className="file-link"><a href={x}>{x}</a></li>)}
-                                        </ul>
-                                    </div>
-                                }
-
-                            </>
-                        )
-                    })
+                {  
+                    data.map(val => <ArchiveItem url={val.url} title={val.title} key={val.url} />)
                 }
             </div>
             <div className="btn-container">
