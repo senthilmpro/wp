@@ -48,12 +48,22 @@ const ArchiveItem = ({ title, url }) => {
         }
     }
 
+    const getResolution = (title) => {
+        if(title.includes('-720-p-')){
+            return '720p'
+        } else if(title.includes('-1080-p-')){
+            return '1080p'
+        } 
+        return null;
+    }
+
     return (
         <div className="LinkItem">
             <div className="TitleItem">
                 <div>
                     <span className="dot"></span>
                     <a href={url} target="_blank">{cleanTitle(title)}</a>
+                    <span className="badge badge-warning">{getResolution(title)}</span>
                 </div>
                 <button className="btn btn-default btn-sm links-btn"
                     onClick={() => fetchArchiveUrl(url)}>
