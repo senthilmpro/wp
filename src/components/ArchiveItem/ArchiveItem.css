@@ -43,3 +43,7 @@
   .file-link {
     word-break: break-all;
   }
+
+  .resolution-badge {
+      margin-left: 1em;
+  }

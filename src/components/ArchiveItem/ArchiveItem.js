@@ -63,7 +63,7 @@ const ArchiveItem = ({ title, url }) => {
                 <div>
                     <span className="dot"></span>
                     <a href={url} target="_blank">{cleanTitle(title)}</a>
-                    <span className="badge badge-warning">{getResolution(title)}</span>
+                    <span className="resolution-badge badge badge-secondary">{getResolution(title)}</span>
                 </div>
                 <button className="btn btn-default btn-sm links-btn"
                     onClick={() => fetchArchiveUrl(url)}>
