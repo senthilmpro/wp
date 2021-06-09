@@ -12,20 +12,24 @@ const ArchiveItem = ({ title, url }) => {
     const [itemState, setItemState] = useState(initialState);
 
     const fetchArchiveUrl = async (url) => {
-        setVisible(true);
-        setItemState(x => ({
-            ...x,
-            initialState
-        }))
-        let reqUrl = url.replace('/details/', '/metadata/');
-        reqUrl = reqUrl.replace('http://', 'https://');
-        const data = await utils.fetchArchiveItem(reqUrl);
-        const linksArr = MetadataUtil.fileLinks(data);
-        setItemState(x => ({
-            ...x,
-            status: 'fetched',
-            items: linksArr
-        }));
+        let isPostVisible = visible;
+        setVisible(c => !c);
+        if(!isPostVisible){
+            setItemState(x => ({
+                ...x,
+                initialState
+            }))
+            let reqUrl = url.replace('/details/', '/metadata/');
+            reqUrl = reqUrl.replace('http://', 'https://');
+            const data = await utils.fetchArchiveItem(reqUrl);
+            const linksArr = MetadataUtil.fileLinks(data);
+            setItemState(x => ({
+                ...x,
+                status: 'fetched',
+                items: linksArr
+            }));
+        }
+        
     }
 
     let filters = [`www-tamilblasters-re-`,`www-tamil-blasters-pl-`,`www-tamilblasters-re-`,`www-tamil-blasters-one-`,`www-1-tamil-mv-mx-`,'-torrent','www-tamil-blasters-ws-','www-tamil-blasters-nl-',
@@ -67,7 +71,7 @@ const ArchiveItem = ({ title, url }) => {
                 </div>
                 <button className="btn btn-default btn-sm links-btn"
                     onClick={() => fetchArchiveUrl(url)}>
-                    Links
+                    {`${visible ? `- ` : '+ ' } Links`}
                 </button>
             </div>
             {
