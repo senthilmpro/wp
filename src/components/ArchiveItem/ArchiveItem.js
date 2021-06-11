@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import utils from '../../services/archive-util';
 import MetadataUtil from '../../services/metadata-util';
+import ItemLink from '../ItemLink/ItemLink';
 import './ArchiveItem.css';
 
 const ArchiveItem = ({ title, url }) => {
@@ -10,6 +11,7 @@ const ArchiveItem = ({ title, url }) => {
         items: null
     };
     const [itemState, setItemState] = useState(initialState);
+    const isFullLink = false;
 
     const fetchArchiveUrl = async (url) => {
         let isPostVisible = visible;
@@ -90,7 +92,7 @@ const ArchiveItem = ({ title, url }) => {
                             }
                             {
                                 itemState.items && 
-                                itemState.items.map(x => <li className="file-link"><a href={x}>{x}</a></li>)
+                                itemState.items.map(x => <li className="file-link"><ItemLink url={x} fullLink={isFullLink} /></li>)
                             }
                         </ul>
                     }
