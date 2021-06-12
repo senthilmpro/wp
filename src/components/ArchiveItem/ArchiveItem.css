@@ -2,13 +2,14 @@
 
 .LinkItemsContainer {
     padding: 10px;
+    background-color: #434343;
+    border-radius: 0.5em;
+    margin: 0.5em;
 }
 
 .LinkItem {
     min-height: 50px;
     text-align:left;
-
-    
 }
 
 .TitleItem {
@@ -38,6 +39,9 @@
   .fileLinks{
         /* margin-top: 10px; */
         text-align: left;
+        background-color: #232323;
+        border-radius: 0.5em;
+        margin: 0.25em;
   }
 
   .file-link {
