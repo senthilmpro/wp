@@ -3,8 +3,15 @@ import utils from './archive-util';
 import WordpressUtil from './wordpress-util';
 
 const parser = {
-    fetchDataAndTransform: async (pageIndex) => {
-        let data = await WordpressUtil.fetchWpContent(WpConfig.site, pageIndex, WpConfig.number);
+    fetchDefaultContent: async (pageIndex, search) => {
+        if(search){
+            return await WordpressUtil.fetchWpContent(WpConfig.site, pageIndex, WpConfig.number, search);
+        } else {
+            return await WordpressUtil.fetchWpContent(WpConfig.site, pageIndex, WpConfig.number);
+        }
+    },
+    fetchDataAndTransform: async (pageIndex, search) => {
+        let data = await parser.fetchDefaultContent(pageIndex, search);
         let objArray = [];
         let posts = data.posts;
         posts.forEach((val, ind) => {

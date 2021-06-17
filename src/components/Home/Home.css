@@ -18,3 +18,7 @@
   .file-link {
     word-break: break-all;
   }
+
+  .btn-search {
+    padding-left: 0.5em;
+  }

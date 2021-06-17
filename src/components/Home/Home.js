@@ -2,14 +2,23 @@ import React, { useEffect, useState } from 'react';
 import parser from '../../services/parser-util';
 import './Home.css';
 import ArchiveItem from '../ArchiveItem/ArchiveItem';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+
 
 const Home = () => {
     const [data, setData] = useState([]);
     const [pageIndex, setPageIndex] = useState(1);
+    const [searchValue, setSearchValue] = useState(null);
     const siteTitle = "Archive WP";
 
     const setArchiveLinks = async (pageIndex) => {
         const linksArray = await parser.fetchDataAndTransform(pageIndex);
+        setData(linksArray);
+    }
+
+    const searchItem = async  (pageIndex) => {
+        const linksArray = await parser.fetchDataAndTransform(pageIndex, searchValue);
         setData(linksArray);
     }
 
@@ -24,13 +33,22 @@ const Home = () => {
     }
 
     useEffect(() => {
-        setArchiveLinks(pageIndex);
+        if(searchValue){
+            searchItem(pageIndex);
+        } else {
+            setArchiveLinks(pageIndex);
+        }
+        
     }, [pageIndex])
 
     return (
         <div className="container Home">
             <div>
                 <h2>{siteTitle} - Page {pageIndex}</h2>
+            </div>
+            <div>
+                <input type="text" placeholder="Search.." onKeyUp={e => setSearchValue(e.target.value)}/>
+                <button className="btn btn-secondary btn-search" onClick={searchItem}><FontAwesomeIcon icon={faSearch} /></button>
             </div>
             <div className="LinkItemsContainer">
                 {  
