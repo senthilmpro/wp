@@ -16,12 +16,17 @@ const ItemLink = ({ url, fullLink }) => {
             // let fileName = url.split('/').pop();
             // let encodedFileName = encodeURIComponent(fileName);
             // return url.replace(fileName, encodedFileName);
-            return url;
+            let str = url;
+            str = str.replace(`[`, `%5B`);
+            str = str.replace(`]`, `%5D`);
+            str = str.replace(`)`, `%29`);
+            str = str.replace(`(`, `%28`);
+            return str;
         } else {
             return url.split('/').pop();
         }
     }
-    return isValidLink(url) && (<a href={getLink(url, true)} target="_blank" rel="noreferrer">{getLink(url, fullLink)}</a>);
+    return isValidLink(url) && (<a href={getLink(url, true)} target="_blank" rel="noreferrer" className="ArchiveLinkTitle">{getLink(url, fullLink)}</a>);
 }
 
 export default ItemLink;
