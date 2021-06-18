@@ -40,7 +40,7 @@ const Home = () => {
             setArchiveLinks(pageIndex);
         }
         // eslint-disable-next-line
-    }, [pageIndex, searchValue])
+    }, [pageIndex])
 
     return (
         <div className="container Home">
