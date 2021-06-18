@@ -17,7 +17,8 @@ const Home = () => {
         setData(linksArray);
     }
 
-    const searchItem = async  (pageIndex) => {
+    const searchItem = async (pageIndex) => {
+        setPageIndex(pageIndex);
         const linksArray = await parser.fetchDataAndTransform(pageIndex, searchValue);
         setData(linksArray);
     }
@@ -33,13 +34,13 @@ const Home = () => {
     }
 
     useEffect(() => {
-        if(searchValue){
+        if (searchValue) {
             searchItem(pageIndex);
         } else {
             setArchiveLinks(pageIndex);
         }
-        
-    }, [pageIndex])
+        // eslint-disable-next-line
+    }, [pageIndex, searchValue])
 
     return (
         <div className="container Home">
@@ -47,11 +48,11 @@ const Home = () => {
                 <h2>{siteTitle} - Page {pageIndex}</h2>
             </div>
             <div>
-                <input type="text" placeholder="Search.." onKeyUp={e => setSearchValue(e.target.value)}/>
-                <button className="btn btn-secondary btn-search" onClick={searchItem}><FontAwesomeIcon icon={faSearch} /></button>
+                <input type="text" placeholder="Search.." onKeyUp={e => setSearchValue(e.target.value)} />
+                <button className="btn btn-secondary btn-search" onClick={() => searchItem(1)}><FontAwesomeIcon icon={faSearch} /></button>
             </div>
             <div className="LinkItemsContainer">
-                {  
+                {
                     data.map(val => <ArchiveItem url={val.url} title={val.title} key={val.url} />)
                 }
             </div>

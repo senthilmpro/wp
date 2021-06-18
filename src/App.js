@@ -1,7 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
-import './DarkMode.css';
 import Home from './components/Home/Home';
+import './DarkMode.css';
 
 function App() {
   return (
