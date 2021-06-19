@@ -24,8 +24,12 @@ const parser = {
                 title: title
             }
             objArray.push(finalObj);
-        })
-        return objArray;
+        });
+        let result = {
+            found: data.found,
+            posts: objArray
+        }
+        return result;
     }
 }
 

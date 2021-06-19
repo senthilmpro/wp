@@ -4,23 +4,28 @@ import './Home.css';
 import ArchiveItem from '../ArchiveItem/ArchiveItem';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { WpConfig } from '../../config';
+
 
 
 const Home = () => {
     const [data, setData] = useState([]);
+    const [count, setCount] = useState(0);
     const [pageIndex, setPageIndex] = useState(1);
     const [searchValue, setSearchValue] = useState(null);
     const siteTitle = "Archive WP";
 
     const setArchiveLinks = async (pageIndex) => {
-        const linksArray = await parser.fetchDataAndTransform(pageIndex);
-        setData(linksArray);
+        const {found, posts} = await parser.fetchDataAndTransform(pageIndex);
+        setCount(found);
+        setData(posts);
     }
 
     const searchItem = async (pageIndex) => {
         setPageIndex(pageIndex);
-        const linksArray = await parser.fetchDataAndTransform(pageIndex, searchValue);
-        setData(linksArray);
+        const {found, posts} = await parser.fetchDataAndTransform(pageIndex, searchValue);
+        setCount(found);
+        setData(posts);
     }
 
     const nextItems = () => {
@@ -57,8 +62,8 @@ const Home = () => {
                 }
             </div>
             <div className="btn-container">
-                <button className="btn btn-info" onClick={() => prevItems()}>Previous</button>
-                <button className="btn btn-info" onClick={() => nextItems()}>Next</button>
+                <button className="btn btn-info" disabled={pageIndex == 1}onClick={() => prevItems()}>Previous</button>
+                <button className="btn btn-info" disabled={pageIndex == Math.ceil(count/WpConfig.number) }onClick={() => nextItems()}>Next</button>
             </div>
         </div>
     )
