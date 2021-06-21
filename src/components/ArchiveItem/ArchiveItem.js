@@ -68,7 +68,7 @@ const ArchiveItem = ({ title, url }) => {
             <div className="TitleItem">
                 <div>
                     <span className="dot"></span>
-                    <a href={url} target="_blank" rel="noreferrer">{cleanTitle(title)}</a>
+                    <a href={url} target="_blank" rel="noreferrer" style={{'color' : 'white'}}>{cleanTitle(title)}</a>
                     <span className="resolution-badge badge badge-secondary">{getResolution(title)}</span>
                 </div>
                 <button className="btn btn-default btn-sm links-btn"

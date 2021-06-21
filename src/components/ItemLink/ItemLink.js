@@ -17,10 +17,10 @@ const ItemLink = ({ url, fullLink }) => {
             // let encodedFileName = encodeURIComponent(fileName);
             // return url.replace(fileName, encodedFileName);
             let str = url;
-            str = str.replace(`[`, `%5B`);
-            str = str.replace(`]`, `%5D`);
-            str = str.replace(`)`, `%29`);
-            str = str.replace(`(`, `%28`);
+            str = str.replaceAll(`[`, `%5B`);
+            str = str.replaceAll(`]`, `%5D`);
+            str = str.replaceAll(`)`, `%29`);
+            str = str.replaceAll(`(`, `%28`);
             return str;
         } else {
             return url.split('/').pop();

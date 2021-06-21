@@ -62,8 +62,8 @@ const Home = () => {
                 }
             </div>
             <div className="btn-container">
-                <button className="btn btn-info" disabled={pageIndex == 1}onClick={() => prevItems()}>Previous</button>
-                <button className="btn btn-info" disabled={pageIndex == Math.ceil(count/WpConfig.number) }onClick={() => nextItems()}>Next</button>
+                <button className="btn btn-info" disabled={pageIndex === 1}onClick={() => prevItems()}>Previous</button>
+                <button className="btn btn-info" disabled={pageIndex === Math.ceil(count/WpConfig.number) }onClick={() => nextItems()}>Next</button>
             </div>
         </div>
     )
