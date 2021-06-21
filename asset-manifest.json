@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/wp/static/css/main.c1ef574a.chunk.css",
-    "main.js": "/wp/static/js/main.5ac9ffdd.chunk.js",
-    "main.js.map": "/wp/static/js/main.5ac9ffdd.chunk.js.map",
+    "main.css": "/wp/static/css/main.a33dbecf.chunk.css",
+    "main.js": "/wp/static/js/main.eaffe7da.chunk.js",
+    "main.js.map": "/wp/static/js/main.eaffe7da.chunk.js.map",
     "runtime-main.js": "/wp/static/js/runtime-main.900a1801.js",
     "runtime-main.js.map": "/wp/static/js/runtime-main.900a1801.js.map",
     "static/js/2.de8067be.chunk.js": "/wp/static/js/2.de8067be.chunk.js",
@@ -10,13 +10,13 @@
     "static/js/3.c748256d.chunk.js": "/wp/static/js/3.c748256d.chunk.js",
     "static/js/3.c748256d.chunk.js.map": "/wp/static/js/3.c748256d.chunk.js.map",
     "index.html": "/wp/index.html",
-    "static/css/main.c1ef574a.chunk.css.map": "/wp/static/css/main.c1ef574a.chunk.css.map",
+    "static/css/main.a33dbecf.chunk.css.map": "/wp/static/css/main.a33dbecf.chunk.css.map",
     "static/js/2.de8067be.chunk.js.LICENSE.txt": "/wp/static/js/2.de8067be.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.900a1801.js",
     "static/js/2.de8067be.chunk.js",
-    "static/css/main.c1ef574a.chunk.css",
-    "static/js/main.5ac9ffdd.chunk.js"
+    "static/css/main.a33dbecf.chunk.css",
+    "static/js/main.eaffe7da.chunk.js"
   ]
 }
